@@ -1,0 +1,221 @@
+export function calc(arr,cube,avg,decimals){
+    var size=arr.length;
+    //size of data, needed different cube types
+    //in data
+    //console.log(arr[0].time)
+    var DNFnum=0;//number of DNFS;
+    var list =[]
+    var tempavg = [];
+    for (var i=0;i<avg.length;i++){
+        if(arr.length<avg[i]){
+            tempavg[i]=null;
+        } else {
+            for (var j=size;j>size-avg[i];j--){//starts at the last solve. works backwards
+                if (arr[j-1].type==cube){
+                    list[size-j]=arr[j-1].result;
+                    //flips order so last in data becomes
+                    //first etc...
+                };
+            };
+            for (var j=0;j<list.length;j++){
+                //checks for the number of DNFs, since they stored as -1
+                if(list[j]==-1){
+                    DNFnum++;
+                };
+            };
+            switch (avg[i]) {
+                //ao5 and ao12 are calculated in the same way
+                case 5:
+                case 12:
+                if (DNFnum>=2){
+                    tempavg[i]=-1;
+                } else {
+                    var smallestValue = list.indexOf(Math.min(...list));
+                    list.splice(smallestValue, 1);
+                    var biggestValue = list.indexOf(Math.max(...list));
+                    list.splice(biggestValue, 1);
+                    tempavg[i] = math.round((math.mean(list)),decimals);
+                }
+                break;
+                default:
+                //any other avg
+                if(DNFnum>=Math.round(avg[i]*0.9)){
+                    tempavg[i]=-1
+                } else {
+                    for(var i=1;i<Math.round(avg[i]*0.1);i++){
+                        // for ao50+ ~90% of solves are counting, rest discarded
+                        smallestValue = list.indexOf(Math.min(...list));
+                        list.splice(smallestValue, 1);
+                        biggestValue = list.indexOf(Math.max(...list));
+                        list.splice(biggestValue, 1);
+                    };
+                    tempavg[i] = math.round((math.mean(list)),decimals);
+                };
+                break;
+            }
+        };
+    }
+    return tempavg;
+}
+export  function calc(obj,cube,avg){
+    var size=0;
+    for (var i in obj){
+        //number of cube solves
+        if(obj[i].type==cube){
+            size++
+        };
+    }
+    var DNFnum=0;//number of DNFS;
+    for (var i=0;j<size;i++){//will go through each avg e.g5,12,etc..
+        if (objlist.length>=avg[j]){
+            new var list=[];
+            new var tempavg=[];//holds calculated avgs
+            for (var j=objlist.length;j>objlist.length-avg;j--){
+                if(obj[j].type==cube){
+                    list[size-j]=objlist[j].time;
+                };
+
+            };//transfers items to list
+            switch (avg[i]) {
+                case 5:
+                case 12:
+                    smallestValue = list.indexOf(Math.min(...list));
+                    list.splice(smallestValue, 1);
+                    biggestValue = list.indexOf(Math.max(...list));
+                    list.splice(biggestValue, 1);
+                    break;
+                default:
+                    for(var i=1;i<Math.round(avg[i]*0.9);i++){
+                        smallestValue = list.indexOf(Math.min(...list));
+                        list.splice(smallestValue, 1);
+                        biggestValue = list.indexOf(Math.max(...list));
+                        list.splice(biggestValue, 1);
+                    };
+                    break;
+
+            }
+            smallestValue = list.indexOf(Math.min(...list));
+            list.splice(smallestValue, 1);
+            biggestValue = list.indexOf(Math.max(...list));
+            list.splice(biggestValue, 1);
+            for (var j=0;j<list.length;j++){
+                if(list[j]==-1){
+                    DNFnum++;
+                }
+            };
+            if(DNFnum>=2){
+                tempavg[i]=-1;
+            } else {
+                var tempavg[i] = math.round((math.mean(list)),decimals);
+            };
+            DNFnum=0;
+        } else {
+            tempavg=null;
+    }}
+    return tempavg
+};
+
+/*function printresults(time,id,deleteRow,avgobj){
+  var table = document.getElementById("Timetable");
+  if (deleteRow==true){
+    for(var l = table.rows.length - 1; l > 0; l--){
+      table.deleteRow(l);
+    };
+  } else {
+    var times_row = table.insertRow(-1);
+    var id1 = times_row.insertCell(0);
+    var result = times_row.insertCell(1);
+    var avg5 = times_row.insertCell(2);
+    id1.innerHTML = id+1;
+    if (data[cubetype].times[id]==-1){
+      result.innerHTML = "DNF";
+    } else {
+      result.innerHTML = time.times[id];
+    }
+    if (time.ao5[id]==null){
+      avg5.innerHTML = " ";
+    } else if (avgobj.five.id==-1){
+      avg5.innerHTML = "DNF";
+    } else {
+      avg5.innerHTML = time.ao5[id];
+    };
+    var avg12 = times_row.insertCell(3);
+    if (time.ao12[id]==null){
+      avg12.innerHTML = " ";
+  } else if (time.ao12[id]==-1){
+      avg12.innerHTML = "DNF";
+    } else {
+      avg12.innerHTML = time.ao12[id];
+    };
+  }
+}*/;
+
+<!--section id="oldmenu" class="sidenav">
+    <a onclick="document.getElementById('general').style.display='block'" href="#" >General</a>
+    <section id="general" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('general').style.display='none'"=>&times;</span>
+            <form id="general_menu">
+                <div class="form-group">
+                    <label for="decimals">Number of decimals displayed</label>
+                    <select class="form-control" id="decimals">
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                    <label for="avg_graph">Averages shown in graph(Hold shift or ctrl to select multiple options)</label>
+                    <select name="avgs[]"multiple class="form-control" id="avg_graph">
+                        <option value="1">Mo3</option>
+                        <option value="2">Ao5</option>
+                        <option value="3">Ao12</option>
+                        <option value="4">Ao50</option>
+                        <option value="5">Ao100</option>
+                        <option value="6">Ao500</option>
+                        <option value="7">Ao1000</option>
+                        <option value="8">Session Mean</option>
+                        <option value="9">Session Average</option>
+                    </select>
+                    <input type="submit" value="save">
+            </form>
+        </div
+    <a onclick="document.getElementById('shortucts').style.display='block'"href="#">Keyboard Shortcuts</a>
+    <section id="shortucts" class="modal">
+        <div class="content">
+            <table class="table table-hover" id="shortcuts_table">
+                <span class="close" onclick="document.getElementById('shortucts').style.display='none'"=>&times;</span>
+                <tr>
+                    <th>Shortcut</th>
+                    <th>Key combo</th>
+                    <th>Usage</th>
+                </tr>
+                <tr>
+                    <td>Typing/Timer</td>
+                    <td>Ctrl+Enter</td>
+                    <td>Switching between virtual timer and entering the times manually</td>
+                </tr>
+                <tr>
+                    <td>Open/close Menu</td>
+                    <td>Ctrl+M</td>
+                    <td>Opening and closing the general menu</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <a href="#">About</a>
+</section-->
+/*this.ao5 = avgs[0];
+this.ao12 = avgs[1];
+this.ao50 = avgs[2];
+this.ao100 = avgs[3];
+this.ao10000 = avgs[4];*/
+Object.defineProperty(Number.prototype, "removeDecimals", {
+    enumerable: false,
+    value: function(len){	
+		var s=math.format(this,{precision:4});		
+		if (len==3){
+			console.log(s.slice(0, -1),'xd',s.slice(0, -2));
+			return s.slice(0, -1);
+		} else{
+			return s.slice(0, -2);
+		}		
+	}
+});

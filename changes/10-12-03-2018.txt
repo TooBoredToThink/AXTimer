@@ -1,0 +1,3 @@
+Added general menu and started filling it im , using form
+Added table to show all keyboards shortcuts, at the moment shortcuts hard-coded,
+will add option to change them in the future.

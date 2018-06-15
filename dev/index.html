@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <head>
+        <title>AXTimer</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="style/colours.css">
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="style/materialize.css"  media="screen,projection"/>
+        <script src="scripts/plugins/materialize.min.js"></script>
+        <script src="scripts/scrambles/lib/raphael-min.js"></script>
+        <script src="scripts/scrambles/scramble_333.js"></script>
+        <script src="scripts/scrambles/scramble_222.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="scripts/plugins/math.min.js"></script>
+        <script src="scripts/plugins/mousetrap.min.js"></script>
+        <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    </head>
+    <body>
+        <section id="modal1" class="modal">
+            <div class="modal-content">
+                 <h4>Modal Header</h4>
+                 <p>A bunch of text</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+        </section>
+        <section id="main">
+        <div id="ScrambleHeader">
+            <h1 id="scramble">Loading...</h1>
+        </div>
+        <div class="row">
+            <div id="column_left" class="col l3">
+                <table class="table-hover" id="Timetable">
+                <tr>
+                <th>ID</th>
+                <th>Time</th>
+                <th>ao5</th>
+                <th>ao12</th>
+                </tr>
+                </table>
+            </div>
+            <div id="column_middle" class="col l6">
+                <form id="Cubes" class="middleform">
+                    <select class="form-control" onchange="this.form.submit()" id="VirtualOptions">
+                        <option value='222'>2x2</option>
+                        <option value='333'>3x3</option>
+                        <option value='444'>4x4</option>
+                        <option value='555'>5x5</option>
+                    </select>
+                </form>
+                <p id="time">00.00</p>
+                <form id="VirtualSolve" class="middleform">
+                    <select class="form-control"  onchange="VirtualSolve.submit()" id="VirtualOptions">
+                        <option value=0>OK</option>
+                        <option value=1>+2</option>
+                        <option value=-1>DNF</option>
+                    </select>
+                </form>
+                <form id="InputTimes">
+                    <input id="TimeType" type="text"></input>
+                    <select class="form-control" id="SolveOption">
+                        <option value=0>OK</option>
+                        <option value=1>+2</option>
+                        <option value=-1>DNF</option>
+                    </select>
+                </form>
+
+            </div>
+            <div id="column_right" class="col l3">
+                <div id="scrambleImage"></div>
+                <div id="chartContainer">
+                    <canvas id="chart"></canvas>
+                </div>
+            </div>
+            </div>
+        </section>
+        <script  type="module" src="scripts/timerv2.js"></script>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+#timeS{
+	height: 50vh;
+	background-color: #0D5C63;
+	border: 1px solid #616161;
+	color:black;
+}
+#relayContainer{
+	height: 100vh;
+	background-color: #0D5C63;
+	border: 1px solid #616161;
+	overflow: auto;
+	color:black;
+}

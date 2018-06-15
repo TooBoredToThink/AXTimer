@@ -1,0 +1,14 @@
+---------------------------08-03-2018--------------------------------------------- 
+
+ db.put(currentime, function callback(err, result) {
+    if (!err) {
+      console.log('added the time');
+    }
+  });
+crashes, this fixed it, also change to _id.
+db.put(currentime).then(function(response){
+    console.log("Added the time")
+  }).catch(function(err){
+    console.log("Sumting wrong ",err)
+  });
+--------------------------- --------------------------------------------- 

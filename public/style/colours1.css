@@ -1,0 +1,92 @@
+body{
+    margin: 0;
+    height:100vh;
+}
+
+#ScrambleHeader{
+    color:#FFFFFF;
+    height:10vh;
+    box-sizing: border-box;
+    background-color: #0D5C63;
+    border: 1px solid #616161;
+    overflow: auto;
+}
+#scramble{
+    color:inherit;
+}
+
+#tableContainer{
+    height:90vh;
+    background-color: #0D5C63;
+    border: 1px solid #616161;
+    overflow: auto;
+    color:#000000;
+}
+
+#graph{
+    height:20vh;
+    background-color: #0D5C63;
+    border: 1px solid #616161;
+    box-sizing: border-box;
+    border: 1px solid #616161;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+#eh{
+    height:70vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+}
+#timeContainer{
+    height:100%;
+    background-color: #0D5C63;
+    border: 1px solid #616161;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+#scrambleContainer{
+    height:100%;
+    background-color: #0D5C63;
+    border: 1px solid #616161;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+#runningtimeContainer{
+    display:none;
+
+}
+#runningtime{
+    font-size: 10em;
+}
+#InputTimes{
+    display: none;
+}
+
+
+/*.outlineInp{
+    border-width: 0 0 1px 0;
+    border-color: #616161;
+    background-color: #0D5C63;
+    height: 40px;
+    font-size: 2.625rem;
+    color:#333;
+}*/
+
+.scroll::-webkit-scrollbar {
+    width: 0px;
+}
+
+
+/*MENU*/
+
+#shortcutsTable{
+    display:none;
+};

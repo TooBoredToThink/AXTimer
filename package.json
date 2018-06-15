@@ -1,0 +1,25 @@
+{
+  "name": "axtimer",
+  "version": "1.0.0",
+  "description": "Rubik's Cube Timer",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TooBoredToThink/AXTimer.git"
+  },
+  "author": "Mo Ba Ndour",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TooBoredToThink/AXTimer/issues"
+  },
+  "homepage": "https://github.com/TooBoredToThink/AXTimer#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "nodemon": "^1.17.2",
+    "npm": "^5.8.0",
+    "php-express": "0.0.3"
+  }
+}
