@@ -1,8 +1,16 @@
-#timeS{
+#createRelay{
 	height: 50vh;
 	background-color: #0D5C63;
 	border: 1px solid #616161;
 	color:black;
+	box-sizing: border-box;
+}
+#relayTime{
+	height: 50vh;
+	background-color: #0D5C63;
+	border: 1px solid #616161;
+	color:black;
+	box-sizing: border-box;
 }
 #relayContainer{
 	height: 100vh;
@@ -10,4 +18,5 @@
 	border: 1px solid #616161;
 	overflow: auto;
 	color:black;
+	box-sizing: border-box;
 }

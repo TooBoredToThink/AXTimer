@@ -31,8 +31,7 @@ if (localStorage.getItem("options") === null){
     };
     Object.keys(options.colours).forEach(key => {
         data.applyColours(key,options.colours[key]);
-    });    
-    console.log(options);
+    }); 
 }else{    
 	options=JSON.parse(localStorage.getItem('options'));  	
 	Object.keys(options.colours).forEach(key => {
@@ -41,32 +40,10 @@ if (localStorage.getItem("options") === null){
 
 }
 
-/*var db = new PouchDB('stuff');
-var remoteDB = new PouchDB('http://localhost:5984/stuffremote');
-remoteDB.info().then(result=>{
-    console.log(result);
-});
-var sync = PouchDB.sync('remoteDB', 'stuff', {
-  live: true,
-  retry: true
-}).on('change', function (info) {
-  console.log(`there's a change ${info}`);
-}).on('paused', function (err) {
-    console.log(`shit got paused ${err}`);
-}).on('active', function () {
-    console.log(`shit is back up`);
-}).on('denied', function (err) {
-    console.log(`cucked xd ${err}`);
-}).on('complete', function (info) {
-    console.log(`done`);
-}).on('error', function (err) {
-    console.log(`ffs ${err}`);
-});*/
 var cubetype=localStorage.getItem('cubern') || '333';
 var DataArr = JSON.parse(localStorage.getItem('solves')) || [];
 export{DataArr as arr, cubetype as cubetype};
 var decimals = options.stats.decimalsDisplayed; //how many decimals used when calculating avgs
-console.log(DataArr);
 if (DataArr.length!=0){
     tableprint(null,1,DataArr,cubetype,options);
     var id = DataArr[DataArr.length-1].position;
@@ -130,8 +107,7 @@ function typing(cycle){
             InputHTML(DataArr);
             $('#cube').unbind('change');
             $('#cubeTyping').on('change',function(){
-				var changed=$(this).val();
-				console.log(changed);
+				var changed=$(this).val();				
 				if (changed =='mbld'){
 					menu.mbld();
 				}else if (changed!=cubetype){
@@ -175,15 +151,13 @@ function typing(cycle){
     }
 };
 
-function InputHTML(DataArr){
-    console.log("listening for input..");
+function InputHTML(DataArr){    
 //this function will detect whhen a time has been inputed, as it uses a form
 //to do so. Then it will add the times and avgs.
     document.getElementById("InputTimes").addEventListener('submit',function(e){
         id++;
         e.preventDefault();
-        var currentime = data.HHtoFloat(document.getElementById("TimeType").value);
-        console.log(currentime);
+        var currentime = data.HHtoFloat(document.getElementById("TimeType").value);        
         if (isNaN(currentime)!=true){
             document.getElementById("TimeType").value = "";
             var penalty = parseInt(document.getElementById("SolveOption").value);
@@ -201,8 +175,7 @@ function InputHTML(DataArr){
             scramble=scramarr[0];
             var scrambleImage=scramarr[1];
             localStorage.id=id+1;
-            localStorage.setItem("solves", JSON.stringify(DataArr));
-            console.log(DataArr);
+            localStorage.setItem("solves", JSON.stringify(DataArr));            
         } else{
             document.getElementById("TimeType").value = "";
         }
@@ -297,8 +270,7 @@ function main(){
                 var inspectiontime = 15;
                 x = setInterval(function(){
                     document.getElementById("runningtime").innerHTML = "<p>" + inspectiontime + "</p>";
-                    if (inspectiontime<=0 && inspectiontime>=-2){
-                        console.log("EHEHEHHE");
+                    if (inspectiontime<=0 && inspectiontime>=-2){                        
                         penalty=1;
                         document.getElementById("runningtime").innerHTML = "<p>" + "+2" + "</p>";
                     } else if (inspectiontime<-2) {
@@ -378,17 +350,30 @@ function main(){
 function mbldRequest(){
 	Mousetrap.unbind('space');
 	$.ajax({
-		url:'relay.html',		
+		url:'relay.html',	
+		dataType:'html',	
 		success: function(html){			
-			document.getElementById('main').innerHTML=html;
+			document.getElementById('main').style.display = "none";
+			document.getElementById('relays').innerHTML = html;			
 			$("<link/>", {
 				rel: "stylesheet",
 				type: "text/css",
-				href: "/style/relay.css"
+				href: "/style/relay.css",
+				id:'relaycsss',
 			 }).appendTo("head");
 			 resizeScramble=false;
 		},
 		complete: function(){
+			$('#goBackRelay').click(function(){
+				$('head').find('link#relaycsss').remove();  	
+				$('#relayDiv').remove();					
+				document.getElementById('main').style.display = "initial";
+				var scramarr=scramblegen(cubetype);
+				scramble=scramarr[0];
+				var scrambleImage=scramarr[1];
+				var id = DataArr[DataArr.length-1].position;
+				Mousetrap.bind('space',main);
+			});			
 			$('input[name="type"]').on('click', function(e) {
 				if(document.querySelector('input[name=type]:checked').value=='nnn'){
 					document.getElementById('bldform').style.display="none";
@@ -660,11 +645,12 @@ window.onload = function(){
         return false;
 	});//using bind rather addEventListener
 	$('#cube').unbind('change');	
-    $('#cube').on('change',function(){
-		alert('xddd');
-        var changed=$(this).val();       
+    $('#cube').on('change',function(){		
+		var changed=$(this).val();   
+		alert(changed);    
 		if (changed =='mbld'){			
 			mbldRequest();
+			$("#CubeUsed").val(changed);
 		}else if (changed!=cubetype){
             id=0;
 			cubetype=changed;			
@@ -689,7 +675,7 @@ window.onload = function(){
             };
             $("#CubeUsed").val(changed);
             localStorage.setItem('cubern',cubetype);
-        };
+		};		
 	});
     menu.Acess(menuOpened,options,coloursOpened);
     Mousetrap.bind('ctrl+enter',function(){

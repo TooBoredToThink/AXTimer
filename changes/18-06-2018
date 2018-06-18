@@ -1,0 +1,17 @@
+- Added support for relays and MBLD
+- Changed layout 
+- Added menus to nhange options and colours
+- Added better support for Manual input
+- Removed google charts and replaced with chartjs
+- Extended recorded info for solves
+- Added solved info when clicking on table
+- Added support for other WCA events
+- Cleaned up project folder
+- Removed most of PouchDB related code
+- Added jscolor for colour picker
+- more ES6 implementations
+- Removed Material CSS
+- Added UIkit
+- Added more flexible units for font size, width and height
+- Added website icon
+- Scramble draw dependent on size of parent container
